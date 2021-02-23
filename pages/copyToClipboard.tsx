@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import copy from "copy-to-clipboard";
 import { useRouter } from "next/router";
 import { useAlert } from "react-alert";
+import Header from "../components/header";
 
 export default function CopyToClipboard() {
   const [text, setText] = useState("");
@@ -29,7 +30,7 @@ export default function CopyToClipboard() {
 
   return (
     <div>
-      <h1 className="mt-2 text-center text-2xl">Copy To Clipboard</h1>
+      <Header text="Copy To Clipboard"></Header>
       <div className="mx-4">
         <input
           className="my-2 px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full max-w-sm"

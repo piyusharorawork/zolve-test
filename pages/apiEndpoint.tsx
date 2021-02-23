@@ -10,6 +10,7 @@ import ExpandIcon from "../components/expandIcon";
 import { useAlert } from "react-alert";
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Header from "../components/header";
 
 const KEY = "U4DMV*8nvpm3EOpvf69Rxw((";
 const BASE_URL = "https://api.stackexchange.com";
@@ -117,9 +118,7 @@ export default function ApiEndPoint() {
 
   return (
     <div>
-      <h1 className="text-center text-2xl py-2">
-        3rd Party API & Visualization{" "}
-      </h1>
+      <Header text="3rd Party API & Visualization"></Header>
       <div className="w-60 m-10 mx-auto">
         <PieChart
           data={data}
