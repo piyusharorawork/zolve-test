@@ -1,4 +1,4 @@
-import React, { LegacyRef, MutableRefObject, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useAlert } from "react-alert";
 import Webcam from "react-webcam";
 import Header from "../components/header";
