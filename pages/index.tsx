@@ -13,6 +13,10 @@ export default function App() {
           <li className="mx-2 cursor-pointer text-purple-700">
             <Link href="/apiEndpoint">1. 3rd Party API & Visualization</Link>
           </li>
+
+          <li className="mx-2 cursor-pointer text-purple-700">
+            <Link href="/copyToClipboard">2. Copy to clip board</Link>
+          </li>
         </ul>
       </div>
     </>

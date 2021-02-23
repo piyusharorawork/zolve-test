@@ -47,6 +47,7 @@ export default function ApiEndPoint() {
   };
 
   const fetchChartData = async () => {
+    setShowSpinner(true);
     const startDate = parseInt(
       (selectedDateRange[0].startDate.getTime() / 1000).toString()
     );
@@ -66,6 +67,7 @@ export default function ApiEndPoint() {
     });
 
     setChartData(updatedChartData);
+    setShowSpinner(false);
   };
 
   useEffect(() => {
@@ -73,8 +75,8 @@ export default function ApiEndPoint() {
     const endDateStr = format(selectedDateRange[0].endDate, "dd MMM, yyyy");
 
     setDateText(`${startDateStr} - ${endDateStr}`);
-    // fetchChartData();
-  }, [selectedDateRange]);
+    fetchChartData();
+  }, []);
 
   const handleDateSelectionChange = (item: any) => {
     setSelectedDateRange([item.selection]);
@@ -129,32 +131,38 @@ export default function ApiEndPoint() {
       </div>
       <div>
         <form className="px-3">
-          <label className="py-2"> Enter Page Number</label>
-          <input
-            className="my-2 px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full"
-            placeholder="Page Number"
-            type="number"
-            onChange={handlePageNumberChange}
-            value={pageNumber}
-          />
+          <div className="max-w-sm">
+            <label className="py-2"> Enter Page Number</label>
+            <input
+              className="my-2 px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full"
+              placeholder="Page Number"
+              type="number"
+              onChange={handlePageNumberChange}
+              value={pageNumber}
+            />
+          </div>
 
-          <label className="py-2"> Enter Page Size</label>
-          <input
-            className="my-2 px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full"
-            placeholder="Page Size"
-            type="number"
-            onChange={handlePageSizeChange}
-            value={pageSize}
-          />
+          <div className="max-w-sm">
+            <label className="py-2"> Enter Page Size</label>
+            <input
+              className="my-2 px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full"
+              placeholder="Page Size"
+              type="number"
+              onChange={handlePageSizeChange}
+              value={pageSize}
+            />
+          </div>
 
-          <label className="py-2 my-2"> Pick Date Range</label>
-          <br />
-          <div
-            onClick={() => setShowDateRange(!showDateRange)}
-            className="bg-blue-500 text-white font-bold h-10 py-2 px-4 my-2 cursor-pointer flex justify-between"
-          >
-            {dateText}
-            <ExpandIcon isCollapsed={!showDateRange} />
+          <div className="max-w-sm">
+            <label className="py-2 my-2"> Pick Date Range</label>
+            <br />
+            <div
+              onClick={() => setShowDateRange(!showDateRange)}
+              className="bg-blue-500 text-white font-bold h-10 py-2 px-4 my-2 cursor-pointer flex justify-between"
+            >
+              {dateText}
+              <ExpandIcon isCollapsed={!showDateRange} />
+            </div>
           </div>
 
           <div style={dateRangeStyle}>
@@ -171,7 +179,10 @@ export default function ApiEndPoint() {
             onClick={handleSubmit}
           >
             <span>Submit</span>
-            <div className="h-2 w-2 mx-4 py-1">
+            <div
+              style={{ display: showSpinner ? "block" : "none" }}
+              className="h-2 w-2 mx-4 py-1"
+            >
               <Loader type="TailSpin" color="#fff" height={20} width={20} />
             </div>
           </a>
